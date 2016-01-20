@@ -26,7 +26,7 @@ export default class extends EventEmitter {
 
 				resolve(stream);
 			});
-		})
+		});
 	}
 
 	start({
@@ -119,5 +119,4 @@ export default class extends EventEmitter {
 
 		return timestamp.now() - this.lastPulseTimestamp < this.minSecondsBetweenPulses;
 	}
-
 }
