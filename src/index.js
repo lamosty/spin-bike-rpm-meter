@@ -1,9 +1,11 @@
 import * as audioContext from 'audio-context';
 import * as timestamp from 'unix-timestamp';
 import * as getUserMedia from 'getusermedia';
+import * as EventEmitter from 'wolfy87-eventemitter';
 
+export const PULSE_EVENT = 'pulse';
 
-export default class {
+export default class extends EventEmitter {
 	construct({
 		bufferSize = 512,
 		numberOfInputChannels = 1,
@@ -72,7 +74,6 @@ export default class {
 
 		let rms = this.getRms( input );
 
-
 		if ( ! this.isPulse( rms ) ) {
 			return;
 		}
@@ -83,11 +84,18 @@ export default class {
 			return;
 		}
 
-		let secondsBetweenPulses = timestamp.now() - this.lastPulseTimestamp;
-		let rpm = this.calcRPM( secondsBetweenPulses );
-		// emit onPulse event
+		let currentPulseTimestamp = timestamp.now();
 
-		this.lastPulseTimestamp = timestamp.now();
+		let secondsBetweenPulses = currentPulseTimestamp - this.lastPulseTimestamp;
+		let rpm = this.calcRPM( secondsBetweenPulses );
+
+		this.lastPulseTimestamp = currentPulseTimestamp;
+
+		this.emitEvent(PULSE_EVENT, {
+			'timestamp': currentPulseTimestamp,
+			'secondsBetweenPulses': secondsBetweenPulses,
+			'rpm': rpm
+		});
 	}
 
 	calcRPM(secondsBetweenPulses) {
