@@ -12,6 +12,7 @@
   "scripts": {
     "clean": "rimraf lib dist",
     "build:lib": "babel src -d lib",
+    "build:umd": "webpack src/index.js dist/spin-bike-rpm-meter.js --config webpack.config.development.js",
     "build": "npm run build:lib",
     "prepublish": "npm run clean && npm run build"
   },
