@@ -1,16 +1,18 @@
-import * as audioContext from 'audio-context';
-import * as timestamp from 'unix-timestamp';
-import * as getUserMedia from 'getusermedia';
-import * as EventEmitter from 'wolfy87-eventemitter';
+import audioContext from 'audio-context';
+import timestamp from 'unix-timestamp';
+import getUserMedia from 'getusermedia';
+import EventEmitter from 'wolfy87-eventemitter';
 
 export const PULSE_EVENT = 'pulse';
 
 export default class extends EventEmitter {
-	construct({
+	constructor({
 		bufferSize = 512,
 		numberOfInputChannels = 1,
 		numberOfOutputChannels = 1
-	}) {
+	} = {}) {
+		super();
+
 		this.initAudioScriptProcessor( bufferSize, numberOfInputChannels, numberOfOutputChannels );
 	}
 
@@ -32,7 +34,7 @@ export default class extends EventEmitter {
 	start({
 		pulseThresholdRms = 0.1,
 		minSecondsBetweenPulses = 0.2
-	}) {
+	} = {}) {
 		this.pulseThresholdRms = pulseThresholdRms;
 		this.minSecondsBetweenPulses = minSecondsBetweenPulses;
 
@@ -40,7 +42,7 @@ export default class extends EventEmitter {
 		this.lastPulseTimestamp = 0;
 
 		return new Promise((resolve, reject) => {
-			getUserMedia().then((stream) => {
+			this.getUserMedia().then((stream) => {
 				const microphone = this.audioContext.createMediaStreamSource(stream);
 
 				microphone.connect(this.audioScriptProcessor);
@@ -66,13 +68,15 @@ export default class extends EventEmitter {
 			numberOfOutputChannels
 		);
 
-		this.audioScriptProcessor.onaudioprocess = this.handleAudioProcess;
+		this.audioScriptProcessor.onaudioprocess = this.handleAudioProcess.bind(this);
 	}
 
 	handleAudioProcess(event) {
-		const input = event.inputBuffer.getChannelData( 0 );
-
+		let input = event.inputBuffer.getChannelData( 0 );
+		
 		let rms = this.getRms( input );
+		
+		console.log(rms);
 
 		if ( ! this.isPulse( rms ) ) {
 			return;
