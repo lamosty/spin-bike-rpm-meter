@@ -76,8 +76,6 @@ export default class extends EventEmitter {
 		
 		let rms = this.getRms( input );
 		
-		console.log(rms);
-
 		if ( ! this.isPulse( rms ) ) {
 			return;
 		}
@@ -95,7 +93,7 @@ export default class extends EventEmitter {
 
 		this.lastPulseTimestamp = currentPulseTimestamp;
 
-		this.emitEvent(PULSE_EVENT, {
+		this.emit(PULSE_EVENT, {
 			'timestamp': currentPulseTimestamp,
 			'secondsBetweenPulses': secondsBetweenPulses,
 			'rpm': rpm
@@ -121,6 +119,6 @@ export default class extends EventEmitter {
 			return false;
 		}
 
-		return timestamp.now() - this.lastPulseTimestamp < this.minSecondsBetweenPulses;
+		return timestamp.now() - this.lastPulseTimestamp > this.minSecondsBetweenPulses;
 	}
 }
