@@ -1,0 +1,28 @@
+{
+  "name": "bike-super-racer",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lamosty/spin-bike-rpm-meter.git"
+  },
+  "author": "Rastislav Lamos <lamos.rasto@gmail.com> (https://lamosty.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lamosty/spin-bike-rpm-meter/issues"
+  },
+  "homepage": "https://github.com/lamosty/spin-bike-rpm-meter#readme",
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "express": "^4.13.4",
+    "webpack": "^1.12.12",
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-hot-middleware": "^2.6.2"
+  }
+}
