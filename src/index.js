@@ -2,6 +2,9 @@ import audioContext from 'audio-context';
 import timestamp from 'unix-timestamp';
 import getUserMedia from 'getusermedia';
 import EventEmitter from 'wolfy87-eventemitter';
+import debugFactory from 'debug';
+
+const debug = debugFactory('spin-bike:rpm-meter');
 
 export const PULSE_EVENT = 'pulse';
 
@@ -75,7 +78,7 @@ export default class extends EventEmitter {
 		let input = event.inputBuffer.getChannelData( 0 );
 		
 		let rms = this.getRms( input );
-		
+
 		if ( ! this.isPulse( rms ) ) {
 			return;
 		}
@@ -93,11 +96,15 @@ export default class extends EventEmitter {
 
 		this.lastPulseTimestamp = currentPulseTimestamp;
 
-		this.emit(PULSE_EVENT, {
+		const pulseData = {
 			'timestamp': currentPulseTimestamp,
 			'secondsBetweenPulses': secondsBetweenPulses,
 			'rpm': rpm
-		});
+		};
+
+		debug('Emitting pulse: ', pulseData);
+
+		this.emit(PULSE_EVENT, pulseData);
 	}
 
 	calcRPM(secondsBetweenPulses) {
