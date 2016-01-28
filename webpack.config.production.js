@@ -1,9 +1,16 @@
 'use strict';
 
 var webpack = require('webpack');
+var WebpackStrip = require('strip-loader');
+
 var baseConfig = require('./webpack.config.base');
 
 var config = Object.create(baseConfig);
+
+config.module.loaders.push({
+	test: /\.js$/,
+	loader: WebpackStrip.loader('debug')
+});
 
 config.plugins = [
 	new webpack.optimize.OccurenceOrderPlugin(),
