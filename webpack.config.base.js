@@ -14,7 +14,7 @@ module.exports = {
 		]
 	},
 	output: {
-		library: 'Spin-bike RPM Meter',
+		library: 'SpinBikeRpmMeter',
 		libraryTarget: 'umd'
 	}
 };
