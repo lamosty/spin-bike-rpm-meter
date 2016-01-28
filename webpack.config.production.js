@@ -22,7 +22,8 @@ config.plugins = [
 			screw_ie8: true,
 			warnings: false
 		}
-	})
+	}),
+	new webpack.NormalModuleReplacementPlugin(/debug/, 'lodash.noop')
 ];
 
 module.exports = config;
