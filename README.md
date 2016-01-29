@@ -73,6 +73,10 @@ rpmMeter.start().then((stop) => {
 });
 ```
 
+## Change Log
+
+See GitHub [Releases](https://github.com/lamosty/spin-bike-rpm-meter/releases) page for documentation of each change.
+
 ## Big picture
 
 RPM meter is not very useful on its own. My plan is to create an open source UI for spin bikes (in React, Redux and other
