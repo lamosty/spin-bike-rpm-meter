@@ -1,7 +1,7 @@
 {
   "name": "spin-bike-rpm-meter",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Plug your spin bike into the mic slot on your PC and start measuring the RPM of your pedaling!",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
   "files": [
@@ -21,6 +21,15 @@
     "type": "git",
     "url": "git+https://github.com/lamosty/spin-bike-rpm-meter.git"
   },
+  "keywords": [
+    "spin bike",
+    "exercise bike",
+    "stationary bike",
+    "rpm meter",
+    "cadence meter",
+    "bike cadence meter",
+    "webrtc"
+  ],
   "author": "Rastislav Lamos",
   "license": "MIT",
   "bugs": {
