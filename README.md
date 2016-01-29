@@ -14,7 +14,7 @@ I discovered that the cable going from the bike to the monitoring device ends in
 the cadence/RPM sensors. Why not put it into the microphone slot of my PC? Turns out the sensor is making a "pulsing" sound
 every time I make a full revolution on the bike pedals.
 
-Long story short, this RPM meter library basically accesses your microphone through browser (Chrome, Firefox, etc.), listens
+Long story short, this RPM meter library basically accesses your microphone through a browser (Chrome, Firefox, etc.), listens
 for the "pulses" from the stationary bike and emits an event each time it detects one. As stationary bikes have no gears
 (on my bike, you can change only the load, not gear), you can measure the wheel size (the distance the bike "travels" during
 one revolution of the pedals) and calculate many interesting things from it.
@@ -80,5 +80,5 @@ See GitHub [Releases](https://github.com/lamosty/spin-bike-rpm-meter/releases) p
 ## Big picture
 
 RPM meter is not very useful on its own. My plan is to create an open source UI for spin bikes (in React, Redux and other
-front-end goodiess) with a simple API. This library is only the "driver" for the bigger project, delivering the information
-about pedalling.
+front-end goodies) with a simple API. This library is only the "driver" for the bigger project, delivering the information
+about pedaling.
