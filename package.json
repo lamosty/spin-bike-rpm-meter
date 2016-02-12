@@ -1,6 +1,6 @@
 {
   "name": "spin-bike-rpm-meter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Plug your spin bike into the mic slot on your PC and start measuring the RPM of your pedaling!",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
