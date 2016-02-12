@@ -84,6 +84,7 @@ export default class extends EventEmitter {
 		}
 
 		if ( this.isFirstPulse ) {
+			this.lastPulseTimestamp = timestamp.now();
 			this.isFirstPulse = false;
 
 			return;
